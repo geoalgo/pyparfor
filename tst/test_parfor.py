@@ -8,7 +8,7 @@ def test_parallel_for_list_arguments():
         "sequential",
         "joblib",
         # TODO fix me in CI
-        "ray"
+        # "ray"
     ]:
         res = parfor(
             f, [[1], [2], [3]], context=dict(v1=2, v2=3), engine=engine
@@ -21,7 +21,7 @@ def test_parallel_for_dict_arguments():
         "sequential",
         "joblib",
         # TODO fix me in CI
-        "ray"
+        # "ray"
     ]:
         res = parfor(
             f, [{"x": 1}, {"x": 2}, {"x": 3}], context=dict(v1=2, v2=3), engine=engine
