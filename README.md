@@ -8,7 +8,7 @@ instead of being copied over with multiprocessing/joblib.
 
 ## Installation
 ```
-pip install git+https://github.com/geoalgo/parfor.git
+`pip install git+https://github.com/geoalgo/parfor.git`
 ```
 
 ## Usage
@@ -22,21 +22,34 @@ from parfor import parfor
 def f(v0: int, v1: float, v2: str) -> str:
     return f"{v0}-{v1}-{v2}"
 
+results = parfor(
+    f,
+    # list of inputs to call f
+    [{"v0": 1}, {"v0": 2}, {"v0": 3}],
+    # context is shared across all calls of f and added the inputs, when using Ray, shared memory is used which is
+    # faster if the context is large
+    context=dict(v1="large-array1", v2="large-array2"),
+    engine='ray',
+)
 
+# ['1-large-array1-large-array2', '2-large-array1-large-array2', '3-large-array1-large-array2']
+print(results)
+```
+
+You can also call `parfor` by positional arguments instead of passing dictionaries:
+
+```python
 results = parfor(
     f,
     # list of inputs to call f
     [[1], [2], [3]],
     # context is shared across all calls of f and added the inputs, when using Ray, shared memory is used which is
     # faster if the context is large
-    context=dict(v1=2.0, v2="cat"),
+    context=dict(v1="large-array1", v2="large-array2"),
     engine='ray',
 )
-
-# ['1-2.0-cat', '2-2.0-cat', '3-2.0-cat']
-print(results)
 ```
-See also tests `tst/test_parfor.py` for other usages.
+This requires that the positional arguments comes before in the function `f` being called.
 
 ## Planned features
 * fix Ray in CI
