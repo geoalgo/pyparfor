@@ -1,14 +1,13 @@
 # parfor
 
 A simple implementation for embarrassingly parallel for. 
-If like me you often just need an embarrassingly parallel for loop where the backend can be interchanged between
-joblib, ray or just sequential execution for easy debugging.
+It allows the backend to be easily switched between sequential (for debugging), multiprocessing (with joblib) or ray.
 When using Ray, one can share memory between tasks of the for loop, e.g. some context is put once in shared memory
 instead of being copied over with multiprocessing/joblib.
 
 ## Installation
 ```
-`pip install git+https://github.com/geoalgo/parfor.git`
+pip install git+https://github.com/geoalgo/parfor.git
 ```
 
 ## Usage
