@@ -5,14 +5,10 @@ It allows the backend to be easily switched between sequential (for debugging), 
 When using Ray, one can share memory between tasks of the for loop, e.g. some context is put once in shared memory
 instead of being copied over with multiprocessing/joblib.
 
-## Installation
-```
-pip install git+https://github.com/geoalgo/parfor.git
-```
 
 ## Usage
 
-See `example/demo.py`:
+Here is an example on how to use `parfor` in python, you can also check the example in `example/demo.py`:
 
 ```python
 from parfor import parfor
@@ -28,7 +24,7 @@ results = parfor(
     # context is shared across all calls of f and added the inputs, when using Ray, shared memory is used which is
     # faster if the context is large
     context=dict(v1="large-array1", v2="large-array2"),
-    engine='ray',
+    engine='ray',  # can be 'sequential', 'joblib', 'futures', 'ray'
 )
 
 # ['1-large-array1-large-array2', '2-large-array1-large-array2', '3-large-array1-large-array2']
@@ -49,6 +45,24 @@ results = parfor(
 )
 ```
 This requires that the positional arguments comes before in the function `f` being called.
+
+## Choosing the backend
+
+Here is a potential use-case for each of the backend:
+* `sequential`: great for debugging
+* `futures`: great for distributing many operations that are IO bound and not compute bound. For instance, querying an
+  external API is a good use-case, parallelizing matrix computation is a bad one.
+* `joblib`: great for distributing many operations that are compute bound. For instance, parallelizing matrix 
+computation where little context needs to be shared between tasks.
+* `ray`: great for distributing many operations that are compute bound where large context needs to be shared between
+  tasks (for instance sharing a large array, a large object, ...). When using Ray, one can share memory between tasks
+  of the for loop, e.g. some context is put once in shared memory instead of being copied over with 
+multiprocessing/joblib.
+
+## Installation
+```
+pip install git+https://github.com/geoalgo/parfor.git
+```
 
 ## Planned features
 * fix Ray in CI
