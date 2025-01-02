@@ -21,7 +21,7 @@ def test_empty_context():
         assert res == [6, 7, 8]
 
 
-def test__list_arguments():
+def test_list_arguments():
     for engine in engines:
         res = parfor(
             f, [[1], [2], [3]], context=dict(v1=2, v2=3), engine=engine
@@ -29,6 +29,14 @@ def test__list_arguments():
         print(res)
         assert res == [6, 7, 8]
 
+
+def test_single_argument():
+    for engine in engines:
+        res = parfor(
+            f, [1, 2, 3], context=dict(v1=2, v2=3), engine=engine
+        )
+        print(res)
+        assert res == [6, 7, 8]
 
 def test_dict_arguments():
     for engine in engines:

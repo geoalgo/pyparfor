@@ -57,7 +57,8 @@ computation where little context needs to be shared between tasks.
 * `ray`: great for distributing many operations that are compute bound where large context needs to be shared between
   tasks (for instance sharing a large array, a large object, ...). When using Ray, one can share memory between tasks
   of the for loop, e.g. some context is put once in shared memory instead of being copied over with 
-multiprocessing/joblib.
+multiprocessing/joblib. The biggest drawbacks of using Ray are that it requires a large time to initialize and
+Ray has a large amount of dependencies.
 
 ## Installation
 ```
