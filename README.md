@@ -66,4 +66,5 @@ pip install git+https://github.com/geoalgo/pyparfor.git
 
 ## Planned features
 * fix Ray in CI
-* Register in Pypi
+* Register in Pypi if no better alternative (best one found so far is https://github.com/fergalm/parmap we could merge ray backend ideally)
+
