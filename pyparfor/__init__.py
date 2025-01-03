@@ -1,7 +1,7 @@
 from collections.abc import Iterable
+from typing import TypeVar, Callable
 
 from tqdm import tqdm
-from typing import TypeVar, Callable, List, Union
 
 # Test ci
 A = TypeVar('A')
@@ -47,7 +47,7 @@ def parfor(
     if engine == "joblib":
         from joblib import Parallel, delayed
         n_jobs = -1 if max_workers is None else max_workers
-        return Parallel(n_jobs=-1, verbose=50)(
+        return Parallel(n_jobs=n_jobs, verbose=50)(
             delayed(f)(**x, **context) if isinstance(x, dict) else delayed(f)(*x, **context)
             for x in inputs
         )

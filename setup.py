@@ -11,10 +11,10 @@ for k, v in extras_require.items():
 extras_require["all"] = all_reqs
 
 setup(
-    name='parfor',
+    name='pyparfor',
     version='0.0.1',
     packages=find_packages(exclude='tst'),
-    url='https://github.com/geoalgo/parfor',
+    url='https://github.com/geoalgo/pyparfor',
     license='Apache-2.0',
     author='Geoalgo',
     install_requires=["tqdm"],  # TODO consider making optional

@@ -1,4 +1,4 @@
-from parfor import parfor
+from pyparfor import parfor
 
 
 def f(x, v1, v2):

@@ -1,4 +1,4 @@
-from parfor import parfor
+from pyparfor import parfor
 
 
 def f(v0: int, v1: float, v2: str) -> str:

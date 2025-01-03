@@ -1,17 +1,16 @@
-# parfor
+# PyParFor
 
-A simple implementation for embarrassingly parallel for. 
-It allows the backend to be easily switched between sequential (for debugging), multiprocessing (with joblib) or ray.
-When using Ray, one can share memory between tasks of the for loop, e.g. some context is put once in shared memory
-instead of being copied over with multiprocessing/joblib.
+PyParFor is a wrapper to perform embarrassingly parallel for loops in Python. 
+It allows to switch the backend easily between sequential (for debugging), multiprocessing (with joblib), ray (to share memory) or futures.
+When using Ray, one can share memory between tasks of the for loop, e.g. some context is put once in shared memory instead of being copied over with multiprocessing/joblib.
 
 
 ## Usage
 
-Here is an example on how to use `parfor` in python, you can also check the example in `example/demo.py`:
+Here is an example on how to use `PyParFor` in python, you can also check the example in `example/demo.py`:
 
 ```python
-from parfor import parfor
+from pyparfor import parfor
 
 
 def f(v0: int, v1: float, v2: str) -> str:
@@ -62,7 +61,7 @@ Ray has a large amount of dependencies.
 
 ## Installation
 ```
-pip install git+https://github.com/geoalgo/parfor.git
+pip install git+https://github.com/geoalgo/pyparfor.git
 ```
 
 ## Planned features
