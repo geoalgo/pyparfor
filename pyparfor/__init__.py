@@ -54,7 +54,10 @@ def parfor(
     if engine == "futures":
         from concurrent.futures import ThreadPoolExecutor
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            return list(executor.map(lambda x: f(**x, **context) if isinstance(x, dict) else f(*x, **context), inputs))
+            return list(tqdm(
+                executor.map(lambda x: f(**x, **context) if isinstance(x, dict) else f(*x, **context), inputs),
+                total=len(inputs),
+            ))
     if engine == "ray":
         import ray
         if not ray.is_initialized():
