@@ -20,4 +20,8 @@ setup(
     install_requires=["tqdm"],  # TODO consider making optional
     extras_require=extras_require,
     description='A simple implementation for embarrassingly parallel for supporting multiple backends.',
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: Apache Software License",
+    ],
 )
