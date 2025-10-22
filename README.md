@@ -4,6 +4,7 @@ PyParFor is a wrapper to perform embarrassingly parallel for loops in Python.
 It allows to switch the backend easily between sequential (for debugging), multiprocessing (with joblib), ray (to share memory) or futures.
 When using Ray, one can share memory between tasks of the for loop, e.g. some context is put once in shared memory instead of being copied over with multiprocessing/joblib.
 
+The code is [a single file](https://github.com/geoalgo/pyparfor/blob/main/pyparfor/__init__.py) to make it easy to copy-paste in a project.
 
 ## Usage
 
